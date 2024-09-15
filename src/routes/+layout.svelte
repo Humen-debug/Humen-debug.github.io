@@ -1,6 +1,8 @@
 <script>
 	import Header from '$lib/components/Header.svelte';
 	import '../app.css';
+
+	const currentYear = new Date().getFullYear();
 </script>
 
 <div class="app">
@@ -11,7 +13,8 @@
 	</main>
 
 	<footer>
-		<p>Designed in Figma and built with Svelte @ Humen Chau 2024</p>
+		<p>&copy; {currentYear} Humen Chau. All rights reserved.</p>
+		<p>Designed in Figma and built with Svelte</p>
 	</footer>
 </div>
 
@@ -27,13 +30,14 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		margin: 0 auto;
+		padding: 0 10%;
 		box-sizing: border-box;
 	}
 
-	@media (min-width: 1024px){
+	@media (max-width: 720px){
 		main{
-			max-width: 1024px;
+			padding: 1rem;
+			margin: 0 auto;
 		}
 	}
 
@@ -43,6 +47,10 @@
 		justify-content: center;
 		align-items: center;
 		padding: 12px;
+	}
+
+	footer p{
+		margin: auto;
 	}
 
 	footer {
