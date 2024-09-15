@@ -47,6 +47,7 @@
 		display: flex;
 		justify-content: space-between;
 		width: 100vw;
+		z-index: 999;
 	}
 
 	.corner {
@@ -83,6 +84,7 @@
 		display: flex;
 		justify-content: center;
 		--background: var(--color-bg-1);
+
 	}
 
 	svg {

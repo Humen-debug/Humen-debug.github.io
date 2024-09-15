@@ -34,8 +34,8 @@ body {
 
 body.dark {
 	--color-bg-0: rgb(24, 28, 20);
-	--color-bg-1: hsl(210, 17%, 17%);
-	--color-bg-2: hsl(222, 20%, 24%);
+	--color-bg-1: hsl(210, 17%, 28%);
+	--color-bg-2: hsl(222, 20%, 32%);
 	--color-text: #ECDFCC;
 	/* background-image: radial-gradient(
 		50% 50% at 50% 50%,
