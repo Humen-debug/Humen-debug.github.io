@@ -3,7 +3,26 @@
 	import '../app.css';
 
 	const currentYear = new Date().getFullYear();
+	let toTopBtn;
+
+	const scrollToTop = () => {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	};
+
+	const onScroll = () => {
+		
+		if (toTopBtn && window.screen.width > 480) {
+			if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+				toTopBtn.style.bottom = '2rem';
+			}else{
+				toTopBtn.style.bottom = '-4rem';
+			}
+		}
+	};
 </script>
+
+<svelte:window on:scroll={onScroll}/>
 
 <div class="app">
 	<Header />
@@ -16,6 +35,12 @@
 		<p>&copy; {currentYear} Humen Chau. All rights reserved.</p>
 		<p>Designed in Figma and built with Svelte</p>
 	</footer>
+
+	<button bind:this={toTopBtn} class="float-btn" on:click={scrollToTop}>
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" fill="none">
+			<path d="M7.5 3L15 11H0L7.5 3Z" />
+		</svg>
+	</button>
 </div>
 
 <style>
@@ -34,8 +59,8 @@
 		box-sizing: border-box;
 	}
 
-	@media (max-width: 720px){
-		main{
+	@media (max-width: 720px) {
+		main {
 			padding: 1rem;
 			margin: 0 auto;
 		}
@@ -49,7 +74,7 @@
 		padding: 12px;
 	}
 
-	footer p{
+	footer p {
 		margin: auto;
 	}
 
@@ -57,9 +82,39 @@
 		font-weight: bold;
 	}
 
+	.float-btn {
+		display: none;
+		position: fixed;
+		bottom: -4rem;
+		right: 2rem;
+		width: 52px;
+		height: 52px;
+
+		background-color: var(--color-text);
+		color: var(--color-bg-0);
+		border: none;
+		border-radius: 999px;
+
+		padding: 1rem;
+		transition: all var(--transition-duration) ease-in-out;
+	}
+
+	.float-btn svg path {
+		fill: var(--color-bg-0);
+	}
+
+	.float-btn svg {
+		width: 100%;
+		height: 100%;
+	}
+
 	@media (min-width: 480px) {
 		footer {
 			padding: 12px 0;
+		}
+
+		.float-btn {
+			display: block;
 		}
 	}
 </style>

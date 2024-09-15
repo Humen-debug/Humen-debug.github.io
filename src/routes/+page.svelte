@@ -148,9 +148,8 @@
 		<h3>Resume</h3>
 	</div>
 
-	<div id="contact" class="section">
+	<div id="contact">
 		<h3>Contact</h3>
-
 		<ContactForm />
 	</div>
 </section>
@@ -177,6 +176,11 @@
 	.section {
 		min-height: 100vh;
 		width: 100%;
+	}
+
+	#contact{
+		width: 100%;
+		margin-bottom: 8rem;
 	}
 
 	.center-content {
