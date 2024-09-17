@@ -3,6 +3,7 @@
 	import Carousel from '$lib/components/Carousel.svelte';
 	import ContactForm from '$lib/components/ContactForm.svelte';
 	import { t } from '$lib/locales/i18n';
+	import { base } from '$app/paths';
 
 
 	const techs = [
@@ -190,7 +191,7 @@
 		{#each projects as project}
 			<div class="project-card">
 				<div class="left">
-					<Carousel images={project.images.map((image) => `/${image}`)} />
+					<Carousel images={project.images.map((image) => `${base}/${image}`)} />
 				</div>
 				<div class="right">
 					<h4>{project.title}</h4>

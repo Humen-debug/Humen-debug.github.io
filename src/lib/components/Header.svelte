@@ -3,6 +3,7 @@
 	import ThemeToggle from './ThemeToggle.svelte';
 	import { t } from '$lib/locales/i18n';
 	import LocaleOptions from './LocaleOptions.svelte';
+	import { base } from '$app/paths';
 	
 
 	let width = 0;
@@ -64,7 +65,7 @@
 				<ul>
 					{#each navs as link}
 						<li>
-							<a href='/{link.href}'>{$t(link.title)}</a>
+							<a href='{base}/{link.href}'>{$t(link.title)}</a>
 						</li>
 					{/each}
 				</ul>
@@ -77,7 +78,7 @@
 				<ul class="column">
 					{#each navs as link}
 						<li>
-							<a href='/{link.href}'>{$t(link.title)}</a>
+							<a href='{base}/{link.href}'>{$t(link.title)}</a>
 						</li>
 					{/each}
 				</ul>
