@@ -17,7 +17,7 @@
 		form?.reset();
 	}
 
-	async function sendEmail(data: { currentTarget: HTMLFormElement | undefined; }) {
+	async function sendEmail(data: { currentTarget: HTMLFormElement | undefined }) {
 		if (submitting) return;
 		const valid = form?.checkValidity();
 		if (valid) {
@@ -39,11 +39,11 @@
 				const result = await response.json();
 				if (result.success) {
 					response_message = 'Success';
-				}else{
+				} else {
 					response_message = result.message;
 				}
 			} catch (error) {
-				console.warn('[WebForm]',error);
+				console.warn('[WebForm]', error);
 			} finally {
 				submitting = false;
 			}
@@ -93,10 +93,10 @@
 	{#if !submitting && response_message.length && response_message !== 'Success'}
 		<p class="warning">
 			{response_message}
-		</p>	
+		</p>
 	{/if}
-	
-	<div class="row" style="justify-content: flex-end; margin-top: 2.5rem; gap: 1rem">
+
+	<div class="buttons">
 		<button class="outline-btn" on:click={reset}>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21" fill="none">
 				<path
@@ -163,7 +163,7 @@
 		--background: var(--color-theme-1);
 	}
 
-	.warning{
+	.warning {
 		margin-top: 1rem;
 		color: red;
 	}
@@ -179,6 +179,20 @@
 		animation: rotation 1s linear infinite;
 	}
 
+	.buttons {
+		display: flex; 
+		align-items: center;
+		justify-content: flex-end;
+		margin-top: 2.5rem;
+		gap: 1rem;
+	}
+
+	@media(max-width: 480px){
+		.buttons {
+			justify-content: center;
+		}
+	}
+
 	@keyframes rotation {
 		0% {
 			transform: rotate(0deg);
@@ -187,4 +201,5 @@
 			transform: rotate(360deg);
 		}
 	}
+	
 </style>
