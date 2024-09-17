@@ -165,7 +165,7 @@
 			</a>
 
 			<a class="icon-btn" target="_blank" href="mailto:humenchau@gmail.com">
-				<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<svg viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z"
 						fill="var(--color-bg-0)"
@@ -246,10 +246,10 @@
 	<div id="resume" class="section">
 		<h3>{$t('homepage.resume')}</h3>
 		<div class="resume-grid">
-			<div class="left">
+			<div >
 				<img id="resume-img"  src="{base}/resume.webp" alt="resume" />
 			</div>			
-			<div class="right">
+			<div>
 				<a
 					class="fill-btn"
 					target="_blank"
@@ -412,6 +412,11 @@
 		align-items: center;
 	}
 
+	.resume-grid > div {
+		box-sizing: border-box;
+		align-self: center;
+	}
+
 	#resume-img {
 		width: 100%;
 		height: 100%;
@@ -433,8 +438,8 @@
 		}
 
 		.resume-grid {
-			grid-template-columns: auto; 
-			grid-template-rows: 400px auto; 
+			grid-template-columns: auto;
+			grid-template-rows: auto auto;
 			row-gap: 2rem;
 		}
 

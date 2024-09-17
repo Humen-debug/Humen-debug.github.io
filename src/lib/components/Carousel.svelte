@@ -30,24 +30,12 @@
 				</ol>
 			</div>
 			<button style="left: 0px;" on:click={onPrevious}>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-				>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
 					<path d="M14 18L8 12L14 6L15.4 7.4L10.8 12L15.4 16.6L14 18Z" fill="black" />
 				</svg>
 			</button>
 			<button style="right: 0px;" on:click={onNext}>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-				>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
 					<path d="M12.6 12L8 7.4L9.4 6L15.4 12L9.4 18L8 16.6L12.6 12Z" fill="black" />
 				</svg>
 			</button>
@@ -73,6 +61,23 @@
 		position: absolute;
 		top: 50%;
 		border-radius: 999px;
+
+		width: auto;
+		display: flex; 
+		justify-content: center;
+		align-items: center;
+		padding: 4px;
+		border: none;
+		background-color: color-mix(in srgb, var(--color-text) 80%, transparent);
+	}
+
+	.carousel > button svg {
+		width: 24px;
+		height: 24px;
+	}
+
+	.carousel > button svg path {
+		fill: var(--color-bg-0)
 	}
 
 	.carousel_viewport {
@@ -109,7 +114,7 @@
 		width: 100%;
 		height: 100%;
 
-		margin: 0 25px;
+		margin-right: 50px;
 		transform-origin: center center;
 		display: flex;
 		justify-content: center;
@@ -118,7 +123,7 @@
 
 	.slides img {
 		height: 90%;
-        border-radius: 1rem;
+		border-radius: 1rem;
 		object-fit: contain;
 	}
 
