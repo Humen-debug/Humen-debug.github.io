@@ -3,6 +3,7 @@
 	import Carousel from '$lib/components/Carousel.svelte';
 	import ContactForm from '$lib/components/ContactForm.svelte';
 	import { t } from '$lib/locales/i18n';
+	import { base } from '$app/paths';
 
 	const techs = [
 		{
@@ -99,14 +100,14 @@
 			link: 'https://wp2023.cs.hku.hk/fyp23051/',
 			github: 'ar-archaeology-app',
 			techs: ['ReactNaive', 'Expo', 'Three.js'],
-			images: ['/FYP_info.png', '/FYP_sites.png']
+			images: ['FYP_info.png', 'FYP_sites.png']
 		},
 		{
 			title: 'AR Archaeology Backend',
 			description: 'archaeology-backend.desc',
 			github: 'ar-archaeology-server',
 			techs: ['React', 'Next.js', 'FeathersJs', 'MongoDB', 'GridFS'],
-			images: ['/add.gif', '/sort_filter.gif', '/media.gif', 'header_customize.gif']
+			images: ['add.gif', 'sort_filter.gif', 'media.gif', 'header_customize.gif']
 		},
 		{
 			title: 'Sleep Tracker',
@@ -115,11 +116,11 @@
 			techs: ['Flutter', 'GraphQL'],
 			images: [
 				'enter_bedtime.gif',
-				'/wakeup.gif',
-				'/sleep_cycle.gif',
-				'/plan.gif',
-				'/sleep_statistic.gif',
-				'/sleep_diary.gif'
+				'wakeup.gif',
+				'sleep_cycle.gif',
+				'plan.gif',
+				'sleep_statistic.gif',
+				'sleep_diary.gif'
 			]
 		}
 	];
@@ -152,7 +153,11 @@
 				</svg>
 			</a>
 
-			<a class="icon-btn">
+			<a
+				class="icon-btn"
+				target="_blank"
+				href="https://drive.google.com/file/d/1L9DnoG8-x5eK_dpuxzUaom0koHhvHFwZ/view?usp=sharing"
+			>
 				<p>CV</p>
 			</a>
 
@@ -185,7 +190,7 @@
 		{#each projects as project}
 			<div class="project-card">
 				<div class="left">
-					<Carousel images={project.images} />
+					<Carousel images={project.images.map((image) => `${base}/${image}`)} />
 				</div>
 				<div class="right">
 					<h4>{project.title}</h4>
@@ -236,6 +241,33 @@
 
 	<div id="resume" class="section">
 		<h3>{$t('homepage.resume')}</h3>
+		<div class="resume-grid">
+			<div class="left">
+				<img id="resume-img"  src="{base}/resume.webp" alt="resume" />
+			</div>			
+			<div class="right">
+				<a
+					class="fill-btn"
+					target="_blank"
+					href="{base}/resume.pdf"
+					download="humen_chau_resume"
+					style="margin-bottom: 1rem;"
+				>
+					<p>
+						{$t('homepage.download')}
+					</p>
+				</a>
+				<a
+					class="outline-btn"
+					target="_blank"
+					href="https://drive.google.com/file/d/1L9DnoG8-x5eK_dpuxzUaom0koHhvHFwZ/view?usp=sharing"
+				>
+					<p>
+						{$t('homepage.viewOnline')}
+					</p>
+				</a>
+			</div>
+		</div>
 	</div>
 
 	<div id="contact">
@@ -369,6 +401,19 @@
 		align-self: center;
 	}
 
+	.resume-grid{
+		display: grid; 
+		grid-template-columns: 50% auto; 
+		column-gap: 2rem;
+		align-items: center;
+	}
+
+	#resume-img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+
 	@media (min-width: 720px) {
 		.project-card {
 			column-gap: 4rem;
@@ -380,6 +425,12 @@
 			grid-template-columns: auto;
 			grid-template-rows: 240px auto;
 			margin-bottom: 4rem;
+			row-gap: 2rem;
+		}
+
+		.resume-grid {
+			grid-template-columns: auto; 
+			grid-template-rows: 400px auto; 
 			row-gap: 2rem;
 		}
 
