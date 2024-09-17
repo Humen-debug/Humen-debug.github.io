@@ -325,9 +325,14 @@
 		--front-color: var(--color-bg-0);
 		background-color: var(--background);
 		color: var(--front-color);
-
 		transition: all var(--transition-duration) linear;
 		cursor: pointer;
+	}
+
+	.icon-btn svg {
+		font-family: serif;
+		width: 40px;
+		height: 40px;
 	}
 
 	.icon-btn:hover {
