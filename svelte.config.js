@@ -14,14 +14,14 @@ const config = {
 			// these options are set automatically — see below
 			pages: 'build',
 			assets: 'build',
-			fallback: undefined,
+			fallback: '404.html',
 			precompress: false,
 			strict: true
 		}),
-		// // set the base path 
-		// paths: {
-		// 	base: process.env.NODE_ENV === 'production' ? '/humen-debug.github.io' :''
-		// }
+		// set the base path 
+		paths: {
+			base: process.env.NODE_ENV === 'production' ? process.env.BASE_PATH :''
+		}
 	}
 };
 
