@@ -121,7 +121,7 @@
 		>
 			{#if submitting}
 				<div class="loader" />
-				<p>Submitting...</p>
+				<p>{$t('contact-form.submitting')}</p>
 			{:else if response_message === 'Success'}
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<path fill="currentColor" d="M21 7L9 19l-5.5-5.5l1.41-1.41L9 16.17L19.59 5.59z" />
@@ -142,6 +142,7 @@
 	input[type='email'],
 	textarea {
 		font-family: var(--font-body);
+		font-size: 1rem;
 		display: block;
 		margin: 0;
 		padding: 1.5rem 2rem;
