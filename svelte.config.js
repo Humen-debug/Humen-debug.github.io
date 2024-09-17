@@ -18,10 +18,10 @@ const config = {
 			precompress: false,
 			strict: true
 		}),
-		// set the base path 
-		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/humen-debug.github.io' :''
-		}
+		// // set the base path 
+		// paths: {
+		// 	base: process.env.NODE_ENV === 'production' ? '/humen-debug.github.io' :''
+		// }
 	}
 };
 
