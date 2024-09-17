@@ -1,58 +1,141 @@
 <script>
-	import ThemeToggle from "./ThemeToggle.svelte";
+	import { onMount } from 'svelte';
+	import ThemeToggle from './ThemeToggle.svelte';
+
+	let width = 0;
+	let menuExpanded = false;
+
+	const navs = [
+		{ title: 'Home', href: '#about' },
+		{ title: 'Projects', href: '#projects' },
+		{ title: 'Resume', href: '#resume' },
+		{ title: 'Contact', href: '#contact' }
+	];
+
+	const toggleMenu = () => {
+		const content = document.getElementById('menu-content');
+		if (!content) return;
+		if (content?.style.display === 'block') {
+			menuExpanded = false;
+			content.style.display = 'none';
+		} else {
+			menuExpanded = true;
+			content.style.display = 'block';
+		}
+	};
+
+	onMount(() => {
+		const link = document.querySelectorAll('a');
+		/**
+		 * @param {MouseEvent} event
+		 */
+		function onLinkClicked(event) {
+			const content = document.getElementById('menu-content');
+			if (!content) return;
+			if (content?.style.display === 'block') {
+				menuExpanded = false;
+				content.style.display = 'none';
+			}
+		}
+		link.forEach((a) => a.addEventListener('click', onLinkClicked));
+
+		return () => {
+			link.forEach((a) => a.removeEventListener('click', onLinkClicked));
+		};
+	});
+
+	$: isDesktop = width > 480;
 </script>
 
+<svelte:window bind:innerWidth={width} />
+
 <header>
-	<div class="corner">
-		<a href="#about">
-			<div class="square">
-				<b>HC</b>
+	{#if menuExpanded}
+		<div class="backdrop-blur" on:click={toggleMenu} />
+	{/if}
+	<div id="topnav">
+		{#if isDesktop}
+			<div class="corner">
+				<a href="#about">
+					<div class="square">
+						<b>HC</b>
+					</div>
+				</a>
 			</div>
-		</a>
-	</div>
 
-	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
-			<li>
-				<a href="#about">Home</a>
-			</li>
-			<li>
-				<a href="#projects">Projects</a>
-			</li>
-			<li>
-				<a href="#resume">Resume</a>
-			</li>
-			<li>
-				<a href="#contact">Contact</a>
-			</li>
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
-	</nav>
+			<nav>
+				<svg viewBox="0 0 2 3" aria-hidden="true">
+					<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
+				</svg>
+				<ul>
+					{#each navs as link}
+						<li>
+							<a href={link.href}>{link.title}</a>
+						</li>
+					{/each}
+				</ul>
+				<svg viewBox="0 0 2 3" aria-hidden="true">
+					<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
+				</svg>
+			</nav>
 
-	<div class="corner">
-		<ThemeToggle>
-			Toggle
-		</ThemeToggle>
+			<div class="corner right">
+				<ThemeToggle />
+			</div>
+		{:else}
+			<div class="corner">
+				<a href="#about">
+					<div class="square">
+						<b>HC</b>
+					</div>
+				</a>
+			</div>
+
+			<div id="menu-content">
+				<ul class="column">
+					{#each navs as link}
+						<li>
+							<a href={link.href}>{link.title}</a>
+						</li>
+					{/each}
+				</ul>
+				<ThemeToggle/>
+			</div>
+			<div class="corner right">
+				<button class="menu-btn" on:click={toggleMenu}>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+						<path d="M3 18V16H21V18H3ZM3 13V11H21V13H3ZM3 8V6H21V8H3Z" />
+					</svg>
+				</button>
+			</div>
+		{/if}
 	</div>
 </header>
 
 <style>
 	header {
 		position: fixed;
-		display: flex;
-		justify-content: space-between;
 		width: 100vw;
+		transition: all var(--transition-duration) linear;
 		z-index: 999;
 	}
 
+	#topnav {
+		position: relative;
+		display: block;
+		overflow: hidden;
+		background-color: var(--color-bg-0);
+	}
+
 	.corner {
-		width: 48px;
-		height: 48px;
+		width: var(--header-height);
+		height: var(--header-height);
+	}
+
+	.right {
+		position: absolute;
+		right: 0;
+		top: 0;
 	}
 
 	.corner a {
@@ -62,7 +145,6 @@
 		width: 100%;
 		height: 100%;
 	}
-
 
 	.corner .square {
 		display: flex;
@@ -84,7 +166,11 @@
 		display: flex;
 		justify-content: center;
 		--background: var(--color-bg-1);
-
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
 	}
 
 	svg {
@@ -129,7 +215,62 @@
 		transition: color var(--transition-duration) linear;
 	}
 
+	header #menu-content {
+		display: none;
+		backdrop-filter: drop-shadow(var(--color-text) 0px 16rem 10px);
+	}
+
+	header #menu-content ul {
+		display: block;
+		position: relative;
+		padding: 0;
+		margin: 0;
+		height: auto;
+	}
+
+	header #menu-content a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 3rem;
+		color: var(--color-text);
+	}
+	header #menu-content a:hover,
 	a:hover {
 		color: var(--color-theme-1);
+	}
+
+	.menu-btn {
+		background-color: transparent;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: none;
+		border-radius: 999px;
+	}
+
+	.menu-btn:hover {
+		background-color: color-mix(in hsl, var(--color-bg-1) 50%, transparent);
+	}
+
+	.menu-btn svg {
+		width: 32px;
+		height: 32px;
+	}
+	.menu-btn svg path {
+		fill: var(--color-text);
+	}
+
+	.backdrop-blur {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 100vh;
+		--backdrop-blur: blur(8px);
+
+		backdrop-filter: var(--backdrop-blur);
 	}
 </style>

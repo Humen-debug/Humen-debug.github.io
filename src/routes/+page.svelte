@@ -134,7 +134,7 @@
 <section>
 	<div id="about" class="section center-content">
 		<h1>Humen Chau</h1>
-		<h2>Software Developer | Full-stack Developer</h2>
+		<h2 style="margin: 1rem 0;">Software Developer | Full-stack Developer</h2>
 		<div class="row" style="gap: 1rem; justify-content:center; margin-top: 2.5rem;">
 			<a class="icon-btn" target="_blank" href="https://github.com/Humen-debug">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 30 30">
@@ -153,7 +153,7 @@
 				</svg>
 			</a>
 
-			<a class="icon-btn" target="_blank">
+			<a class="icon-btn" >
 				<p>CV</p>
 			</a>
 

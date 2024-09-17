@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import Header from '$lib/components/Header.svelte';
 	import '../app.css';
 
 	const currentYear = new Date().getFullYear();
-	let toTopBtn;
+	let toTopBtn: HTMLElement;
 
 	const scrollToTop = () => {
 		document.body.scrollTop = 0;
