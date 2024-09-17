@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
+	import { t } from '$lib/locales/i18n';
 	import '../app.css';
 
 	const currentYear = new Date().getFullYear();
@@ -32,8 +33,8 @@
 	</main>
 
 	<footer>
-		<p>&copy; {currentYear} Humen Chau. All rights reserved.</p>
-		<p>Designed in Figma and built with Svelte</p>
+		<p>{$t('footer.copyright', {year: currentYear})}</p>
+		<p>{$t('footer.designed')}</p>
 	</footer>
 
 	<button bind:this={toTopBtn} class="float-btn" on:click={scrollToTop}>

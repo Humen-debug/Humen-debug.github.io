@@ -246,3 +246,7 @@ html {
 .outline-btn img {
 	fill: var(--front-color);
 }
+
+.fill-btn p {
+	color: var(--font-color)
+}

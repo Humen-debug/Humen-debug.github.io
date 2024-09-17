@@ -1,15 +1,17 @@
 <script>
 	import { onMount } from 'svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
+	import { t, locales } from '$lib/locales/i18n';
+	import LocaleOptions from './LocaleOptions.svelte';
 
 	let width = 0;
 	let menuExpanded = false;
 
 	const navs = [
-		{ title: 'Home', href: '#about' },
-		{ title: 'Projects', href: '#projects' },
-		{ title: 'Resume', href: '#resume' },
-		{ title: 'Contact', href: '#contact' }
+		{ title: 'homepage.home', href: '#about' },
+		{ title: 'homepage.projects', href: '#projects' },
+		{ title: 'homepage.resume', href: '#resume' },
+		{ title: 'homepage.contact', href: '#contact' }
 	];
 
 	const toggleMenu = () => {
@@ -44,7 +46,7 @@
 		};
 	});
 
-	$: isDesktop = width > 480;
+	$: isDesktop = width > 720;
 </script>
 
 <svelte:window bind:innerWidth={width} />
@@ -70,7 +72,7 @@
 				<ul>
 					{#each navs as link}
 						<li>
-							<a href={link.href}>{link.title}</a>
+							<a href={link.href}>{$t(link.title)}</a>
 						</li>
 					{/each}
 				</ul>
@@ -79,8 +81,11 @@
 				</svg>
 			</nav>
 
-			<div class="corner right">
-				<ThemeToggle />
+			<div class="row right">
+				<LocaleOptions />
+				<div class="corner">
+					<ThemeToggle />
+				</div>
 			</div>
 		{:else}
 			<div class="corner">
@@ -95,11 +100,17 @@
 				<ul class="column">
 					{#each navs as link}
 						<li>
-							<a href={link.href}>{link.title}</a>
+							<a href={link.href}>{$t(link.title)}</a>
 						</li>
 					{/each}
 				</ul>
-				<ThemeToggle/>
+				<div class="row">
+					<div style="display: flex; flex: 1 0 auto;">
+						<LocaleOptions />
+					</div>
+					<ThemeToggle />
+				</div>
+				
 			</div>
 			<div class="corner right">
 				<button class="menu-btn" on:click={toggleMenu}>
