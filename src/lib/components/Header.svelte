@@ -17,27 +17,18 @@
 	const toggleMenu = () => {
 		const content = document.getElementById('menu-content');
 		if (!content) return;
-		if (content?.style.display === 'block') {
-			menuExpanded = false;
-			content.style.display = 'none';
-		} else {
-			menuExpanded = true;
-			content.style.display = 'block';
-		}
+		menuExpanded = !menuExpanded;
+		
 	};
 
 	onMount(() => {
 		const link = document.querySelectorAll('a');
+		
 		/**
 		 * @param {MouseEvent} event
 		 */
 		function onLinkClicked(event) {
-			const content = document.getElementById('menu-content');
-			if (!content) return;
-			if (content?.style.display === 'block') {
-				menuExpanded = false;
-				content.style.display = 'none';
-			}
+			if(menuExpanded) menuExpanded = false;
 		}
 		link.forEach((a) => a.addEventListener('click', onLinkClicked));
 
@@ -56,15 +47,15 @@
 		<div class="backdrop-blur" on:click={toggleMenu} />
 	{/if}
 	<div id="topnav">
-		{#if isDesktop}
-			<div class="corner">
-				<a href="#about">
-					<div class="square">
-						<b>HC</b>
-					</div>
-				</a>
-			</div>
+		<div class="corner">
+			<a href="#about">
+				<div class="square">
+					<b>HC</b>
+				</div>
+			</a>
+		</div>
 
+		{#if isDesktop}
 			<nav>
 				<svg viewBox="0 0 2 3" aria-hidden="true">
 					<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
@@ -80,23 +71,8 @@
 					<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
 				</svg>
 			</nav>
-
-			<div class="row right">
-				<LocaleOptions />
-				<div class="corner">
-					<ThemeToggle />
-				</div>
-			</div>
 		{:else}
-			<div class="corner">
-				<a href="#about">
-					<div class="square">
-						<b>HC</b>
-					</div>
-				</a>
-			</div>
-
-			<div id="menu-content">
+			<div id="menu-content" class:hidden={!menuExpanded}>
 				<ul class="column">
 					{#each navs as link}
 						<li>
@@ -110,16 +86,27 @@
 					</div>
 					<ThemeToggle />
 				</div>
-				
-			</div>
-			<div class="corner right">
-				<button class="menu-btn" on:click={toggleMenu}>
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-						<path d="M3 18V16H21V18H3ZM3 13V11H21V13H3ZM3 8V6H21V8H3Z" />
-					</svg>
-				</button>
 			</div>
 		{/if}
+
+		<div class="right">
+			{#if isDesktop}
+				<div class="row">
+					<LocaleOptions />
+					<div class="corner">
+						<ThemeToggle />
+					</div>
+				</div>
+			{:else}
+				<div class="corner right">
+					<button class="menu-btn" on:click={toggleMenu}>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+							<path d="M3 18V16H21V18H3ZM3 13V11H21V13H3ZM3 8V6H21V8H3Z" />
+						</svg>
+					</button>
+				</div>
+			{/if}
+		</div>
 	</div>
 </header>
 
@@ -227,8 +214,12 @@
 	}
 
 	header #menu-content {
-		display: none;
+		display: block;
 		backdrop-filter: drop-shadow(var(--color-text) 0px 16rem 10px);
+	}
+
+	.hidden {
+		display: none !important;
 	}
 
 	header #menu-content ul {

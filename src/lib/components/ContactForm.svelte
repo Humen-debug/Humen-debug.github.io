@@ -126,7 +126,7 @@
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<path fill="currentColor" d="M21 7L9 19l-5.5-5.5l1.41-1.41L9 16.17L19.59 5.59z" />
 				</svg>
-				<span>{$t('basic.success')}</span>
+				<span>{$t('contact-form.success')}</span>
 			{:else}
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
 					<path d="M3 20V4L22 12L3 20ZM5 17L16.85 12L5 7V10.5L11 12L5 13.5V17Z" fill="black" />
