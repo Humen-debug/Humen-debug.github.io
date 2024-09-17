@@ -244,13 +244,13 @@
 		<h3>{$t('homepage.resume')}</h3>
 		<div class="resume-grid">
 			<div class="left">
-				<img id="resume-img"  src="/resume.webp" alt="resume" />
+				<img id="resume-img"  src="{base}/resume.webp" alt="resume" />
 			</div>			
 			<div class="right">
 				<a
 					class="fill-btn"
 					target="_blank"
-					href="/resume.pdf"
+					href="{base}/resume.pdf"
 					download="humen_chau_resume"
 					style="margin-bottom: 1rem;"
 				>
