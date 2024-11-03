@@ -136,6 +136,7 @@
 	<div id="about" class="section center-content">
 		<h1>Humen Chau</h1>
 		<h2 style="margin: 1rem 0;">{$t('homepage.job')}</h2>
+		<p class="intro">{$t('homepage.intro')}</p>
 		<div class="row" style="gap: 1rem; justify-content:center; margin-top: 2.5rem;">
 			<a class="icon-btn" target="_blank" href="https://github.com/Humen-debug">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 30 30">
@@ -157,12 +158,12 @@
 			<a
 				class="icon-btn"
 				target="_blank"
-				href="https://drive.google.com/file/d/1L9DnoG8-x5eK_dpuxzUaom0koHhvHFwZ/view?usp=sharing"
+				href="https://1drv.ms/b/s!ArZcF5Q0_vpfaUpPJDgstE9EVF0?e=NGTJa4"
 			>
 				<p>CV</p>
 			</a>
 
-			<a class="icon-btn" target="_blank" href="mailto:humenchau@gmail.com">
+			<a class="icon-btn" target="_blank" href="mailto:humenchau@outlook.com">
 				<svg viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z"
@@ -262,7 +263,7 @@
 				<a
 					class="outline-btn"
 					target="_blank"
-					href="https://drive.google.com/file/d/1L9DnoG8-x5eK_dpuxzUaom0koHhvHFwZ/view?usp=sharing"
+					href="https://1drv.ms/b/s!ArZcF5Q0_vpfaUpPJDgstE9EVF0?e=NGTJa4"
 				>
 					<p>
 						{$t('homepage.viewOnline')}
@@ -427,12 +428,20 @@
 	}
 
 	@media (min-width: 720px) {
+		.intro {
+			margin: 0 8rem;
+		}
+
 		.project-card {
 			column-gap: 4rem;
 		}
 	}
 
 	@media (max-width: 480px) {
+		.intro {
+			margin: 0 auto;
+		}
+
 		.project-card {
 			grid-template-columns: auto;
 			grid-template-rows: 240px auto;

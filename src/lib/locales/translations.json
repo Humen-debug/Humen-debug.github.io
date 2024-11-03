@@ -1,6 +1,7 @@
 {
     "en":{
         "homepage.job" :"Software Developer | Full-stack Developer",
+        "homepage.intro":"A passionate developer whose career aspiration is to leverage skills in software engineering to create innovative solutions that enhance user experiences and drive business success",
         "homepage.home": "Home",
         "homepage.skills" : "Skills & Tools",
         "homepage.projects": "Projects",
@@ -26,6 +27,7 @@
     },
     "zh":{
         "homepage.job" :"軟體工程師 | 全端工程師",
+        "homepage.intro":"",
         "homepage.home": "主頁",
         "homepage.skills" : "技能 & 工具",
         "homepage.projects": "專案",
